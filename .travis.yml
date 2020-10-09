@@ -16,7 +16,3 @@ after_script:
 branches:
   only:
     - master
-
-root: /my-blog/
-
-url: https://9ui.github.io
