@@ -1,0 +1,156 @@
+/* Here is your custom css styles. */
+nav ul a {
+  padding: 0 20px;
+}
+
+.carousel.carousel-slider .carousel-item {
+  height: 400px !important;
+}
+
+.main-content {
+  min-height: auto !important;
+}
+
+nav .brand-logo {
+  height: 64px;
+  font-size: 0;
+  width: 200px;
+}
+
+.brand-logo-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* .waves-effect .waves-light {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 64px;
+} */
+ul.right span {
+  margin-left: 5px;
+}
+
+.page-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  line-height: 57px;
+}
+
+footer .social-statis {
+  margin-top: 0;
+}
+
+.row {
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 440px) and (min-width:310px) {
+  nav .brand-logo {
+    display: none;
+  }
+}
+
+.sidenav li>a>i {
+  margin: 0;
+}
+
+.toc-fixed {
+  position: fixed;
+  left: 50%;
+  top: 80px !important;
+  margin-left: 430px;
+  border-radius: 5px;
+}
+
+.toc-widget {
+  padding-left: 20px;
+  background-color: #fff;
+  padding: 0 30px 30px;
+  box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15),
+    0 5px 15px rgba(0, 0, 0, .07),
+    0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+}
+
+.toc-link::before {
+  width: 0 !important;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+  .row .col.s18 {
+    width: 100%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .row .col.s18 {
+    width: 83.3333333%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+  }
+}
+.cd-timeline-content{
+  border-radius: 5px;
+}
+.cd-timeline-content .article{
+  padding: 10px;
+}
+
+.cd-timeline-content .title {
+  height: 50px;
+  line-height: 50px;
+  background: transparent;
+  margin: auto 10px;
+  /* line-height: .9rem; */
+  /* margin-bottom: .5rem; */
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+.cd-timeline-content p {
+  color: #fff !important;
+  padding: 0 15px !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .cd-timeline-content .title {
+    font-size: 1.25rem;
+  }
+}
+
+@media only screen and (max-width: 601px){
+  .cd-timeline-content .title {
+    font-size: 1.25rem;
+  }
+}
+
+.cd-read-more {
+  display: inline-block !important;
+  cursor: pointer !important;
+  border: none !important;
+  box-sizing: border-box !important;
+  transition-property: all !important;
+  transition-duration: .3s !important;
+  background: #FF4351 !important;
+  border-radius: 15px !important;
+  width: 100px !important;
+  text-align: center !important;
+}
+
+.cd-timeline-content .cd-read-more {
+  float: right;
+  padding: .8em 1em;
+  color: #fff;
+  text-decoration: none;
+}

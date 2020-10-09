@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - '11'
+install:
+  - npm install
+script:
+  - hexo g
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name ${USERNAME}
+  - git config user.email ${UESREMAIL}
+  - git add -A
+  - git commit -m 'init'
+  - git push -u -f "https://${TOKEN}@github.com/${USERNAME}/my-blog" master:gh-pages
+branches:
+  only:
+    - master
+
+root: /my-blog/
+
+url: https://9ui.github.io
