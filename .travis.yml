@@ -12,7 +12,7 @@ after_script:
   - git config user.email ${UESREMAIL}
   - git add -A
   - git commit -m 'init'
-  - git push -u -f "https://${TOKEN}@github.com/${USERNAME}/my-blog" master:gh-pages
+  - git push -u -f "https://${TOKEN}@github.com/${USERNAME}/9ui.github.io" master:gh-pages
 branches:
   only:
     - master
