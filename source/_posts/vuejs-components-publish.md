@@ -4,7 +4,6 @@ date: 2019-05-21 23:23:21
 tags:
   - vue
   - 组件
-  - npm
 author: 左智文
 # password: cf6332a8a73916763aad4c668cf637467a3d554fb2f1bbd50ffc0b17f55129bc
 img: https://img.90c.vip/vue-cover/img015.jpg?x-oss-process=image/format,webp

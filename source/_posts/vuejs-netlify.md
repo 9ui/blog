@@ -3,7 +3,6 @@ title: 使用GitLab的CI / CD管道将Vue.js应用程序部署到Netlify
 date: 2019-05-20 10:48:09
 tags:
   - vue
-  - 集成
 author: 左智文
 img: https://img.90c.vip/vue-cover/img017.jpg?x-oss-process=image/format,webp
 summary: 本章节，我们将关注如何使用GitLab的CI / CD管道将Vue.js应用程序部署到Netlify。

@@ -2,7 +2,7 @@
 title: css命名规范
 date: 2019-05-10 17:20:15
 # password: cf6332a8a73916763aad4c668cf637467a3d554fb2f1bbd50ffc0b17f55129bc
-tags: css
+tags: 规范
 img: https://img.90c.vip/sass-cover/css026.jpg?x-oss-process=image/format,webp
 author: 左智文
 summary: 本章节，整理项目的一些项目中常用的css命名，仅供参考。

@@ -4,7 +4,6 @@ date: 2019-05-20 21:59:00
 tags:
   - vue
   - nuxt
-  - ssr
 # cover: true
 author: 左智文
 # password: cf6332a8a73916763aad4c668cf637467a3d554fb2f1bbd50ffc0b17f55129bc

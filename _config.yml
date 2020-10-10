@@ -3,13 +3,13 @@ title: 码农
 subtitle: 努力做有价值的技术文章
 description: 这里，只求分享与免费；这里，不隐含扭曲的价值观，而是整合并充盈正能量
 keywords:
-author: laihua-coder
+author: 9ui
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://laihua-coder.github.io
+url: http://9ui.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -82,7 +82,7 @@ theme: hexo-theme-matery
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/laihua-coder/laihua-coder.github.io.git
+  repo: https://github.com/9ui/9ui.github.io.git
 
 
 offline:

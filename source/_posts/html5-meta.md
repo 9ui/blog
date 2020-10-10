@@ -2,8 +2,7 @@
 title: HTML5常用meta标签整理
 date: 2019-06-13 14:09:18
 tags:
-- html
-- meta标签
+- html5
 author: 左智文
 img: https://img.90c.vip/vue-cover/img010.jpg?x-oss-process=image/format,webp
 summary: 本章节，HTML5常用meta标签整理，meta标签提供关于HTML文档的元数据。
