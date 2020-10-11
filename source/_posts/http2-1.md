@@ -4,7 +4,7 @@ date: 2019-05-17 13:39:22
 tags:
  - http
 # top: true
-# cover: true
+cover: true
 author: 左智文
 img: https://img.90c.vip/http-cover/1360234_5e19.jpg?x-oss-process=image/format,webp
 password: cf6332a8a73916763aad4c668cf637467a3d554fb2f1bbd50ffc0b17f55129bc
@@ -17,7 +17,7 @@ categories: 网络
 
 > 此功能与所有主流浏览器兼容，并且不需要对页面标记进行任何更改，因此很容易采用！
 
-## 什么是渐进式图像渲染？
+## 什么是渐进式图像渲染
 
 基本图像严格从上到下加载。如果浏览器仅收到一半图像文件，则它只能显示图像的上半部分。渐进式图像的内容不是从上到下排列，而是从低像素到高像素。接收一小部分图像数据允许浏览器显示整个图像，但保真度较低。随着更多数据的到来，图像变得更清晰，更清晰。
 
