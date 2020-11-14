@@ -1,5 +1,5 @@
 {
-  "name": "hexo-site",
+  "name": "my-blog",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,11 @@
   "hexo": {
     "version": "4.2.1"
   },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
   "dependencies": {
     "hexo": "^4.2.1",
     "hexo-deployer-git": "^1.0.0",
@@ -18,13 +23,20 @@
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-index": "^1.0.0",
     "hexo-generator-tag": "^1.0.0",
-    "hexo-renderer-ejs": "^1.0.0",
-    "hexo-renderer-stylus": "^1.1.0",
-    "hexo-renderer-marked": "^2.0.0",
     "hexo-offline": "^1.0.0",
     "hexo-permalink-pinyin": "^1.0.0",
     "hexo-prism-plugin": "^2.3.0",
+    "hexo-renderer-ejs": "^1.0.0",
+    "hexo-renderer-marked": "^2.0.0",
+    "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
     "hexo-wordcount": "^6.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "commitizen": "^4.2.2",
+    "commitlint-config-cz": "^0.13.2",
+    "cz-customizable": "^6.3.0"
   }
 }
