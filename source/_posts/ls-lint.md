@@ -5,10 +5,6 @@ tags:
   - 工具
 author: 左智文
 img: https://img.90c.vip/js-cover/1705248_a6d3.jpg?x-oss-process=image/format,webp
-# password: cf6332a8a73916763aad4c668cf637467a3d554fb2f1bbd50ffc0b17f55129bc
-# top: true
-# cover: true
-# coverImg: https://cdn-images-1.medium.com/max/2600/1*Z8V4nPzrELcD2Tkjy4DtNQ.png
 summary: ls-lint是一个非常快的文件和目录名称linter，它提供了一种简单快速的方法来将某些结构带到您的项目目录中。
 categories: 规范工具
 ---
