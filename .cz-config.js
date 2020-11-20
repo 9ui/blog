@@ -1,6 +1,6 @@
 module.exports = {
   types: [
-    { value: '✨ new', name: 'new:     新增文档' },
+    { value: '✨ new', name: 'new:     新增文章' },
     { value: '📝 edit', name: 'docs:     编辑文章' },
     { value: '🔥 del', name: 'del:      删除文章' },
     { value: '🔧chore', name: 'chore:    更改配置文件' },
