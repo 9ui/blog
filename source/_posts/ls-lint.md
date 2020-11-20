@@ -1,6 +1,6 @@
 ---
 title: ls-lint
-date: 2019-05-18 10:04:06
+date: 2020-11-20 16:14:06
 tags:
   - 工具
 author: 左智文
@@ -10,7 +10,7 @@ img: https://img.90c.vip/js-cover/1705248_a6d3.jpg?x-oss-process=image/format,we
 # cover: true
 # coverImg: https://cdn-images-1.medium.com/max/2600/1*Z8V4nPzrELcD2Tkjy4DtNQ.png
 summary: ls-lint是一个非常快的文件和目录名称linter，它提供了一种简单快速的方法来将某些结构带到您的项目目录中。
-categories: vue
+categories: 规范工具
 ---
 
 ls-lint是一个非常快的文件和目录名称linter，它提供了一种简单快速的方法来将某些结构带到您的项目目录中。
@@ -190,7 +190,7 @@ ls-lint提供了多个开箱即用的规则
 | pascalcase | PascalCase| 字符串必须为Pascalcase 只允许使用字母和数字|
 | snakecase | 	snake_case| 字符串必须为snake_case 只允许使用小写字母，数字和_|
 | kebabcase | kebab-case | 字符串必须为kebab-case 仅小写字母，数字和-允许|
-| pointcase | point.case| 字符串必须为“小写” 仅小写字母，数字和。允许的|
+| pointcase | point.case| 字符串必须为“小写” 仅小写字母，数字和.允许的|
 
 #### 正则表达式
 
