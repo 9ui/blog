@@ -4,7 +4,7 @@ module.exports = {
     { value: '📝 编辑', name: '编辑:     编辑文章' },
     { value: '📝 日志', name: '日志:     更新日志' },
     { value: '🔥 删除', name: '删除:      删除文章' },
-    { value: '配置', name: '配置:    更改配置文件' },
+    { value: '🔧配置', name: '配置:    更改配置文件' },
   ],
   scopes: [],
   messages: {
