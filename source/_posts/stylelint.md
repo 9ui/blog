@@ -426,5 +426,145 @@ plugins
 
 ignore *选项使用户可以在配置级别忽略非标准语法。例如，：
 
+- CSS模块中引入的：global和：local伪类
+- SCSS中引入的@debug和@extend规则
 
 
+### Names
+
+规则是一致命名的，它们是：
+
+- 由连字号分隔的小写字母组成
+- 分为两部分
+
+第一部分描述了规则适用的内容。第二部分描述了规则正在检查的内容
+
+例如：
+
+```json
+"number-leading-zero"
+// ↑          ↑
+// the thing  what the rule is checking
+```
+
+当规则适用于整个样式表时，没有第一部分。
+
+例如：
+
+```json
+"no-eol-whitespace"
+"indentation"
+//    ↑
+// what the rules are checking
+```
+
+命名规则是为了鼓励显式而非隐式选项.color-hex-case：“upper” |“ lower”，而不是color-hex-uppercase：“always” |“never”。如color-hex-uppercase：“never”表示总是小写，而color-hex-case：“lower”使它明确。
+
+### No rules
+
+大多数规则都要求或禁止某些事情。
+
+例如，数字是否必须带有前导零：
+
+
+```css
+a { line-height: 0.5; }
+/**              ↑
+ * This leading zero */
+ ```
+
+ 但是，某些规则只是禁止某些事情。这些规则的名称中包含* -no- *。
+
+ 例如，要禁止空块：
+
+- block-no-empty - 块不能为空
+
+```css
+a {   }
+/** ↑
+ * Blocks like this */
+ ```
+
+ 请注意，选择强制执行相反的选择是没有意义的，即每个块都必须为空。
+
+ ### Max and min rules
+
+ * -max- *和* -min- *规则设置了某些限制。
+
+ 例如，在“.”之后指定最大位数：
+
+- number-max-precision: int
+
+```css
+a { font-size: 1.333em; }
+/**             ↑
+ * The maximum number of digits after this "." */
+```
+
+### Whitespace rules
+
+空格规则使您可以在样式表的某些特定部分中强制使用空行，单个空格，换行符或不使用空格。
+
+空格规则结合了两组关键字：
+
+- before, after 和 inside，以指定期望在哪里空格（如果有）
+
+- empty-line, space 和 newline 指定在该处是否应使用单个空行，单个空格，单个换行符或不包含空格
+
+例如，指定样式表中的所有注释之前必须是空行还是无空格：
+
+- comment-empty-line-before: string - "always"|"never"
+
+```text
+a {}
+              ←
+/* comment */ ↑
+              ↑
+/**           ↑
+ * This empty line  */
+ ```
+
+ 此外，一些空格规则还使用其他关键字集：
+
+- 如果目标是事物中的特定标点符号，则使用逗号，冒号，分号，右括号，右括号，右括号，右括号，运算符或范围运算符
+
+例如，指定函数中的逗号后面必须是单个空格还是一个空格：
+
+- function-comma-space-after: string - "always"|"never"
+
+```css
+a { transform: translate(1, 1) }
+/**                       ↑
+ * The space after this commas */
+ ```
+
+ 标点的复数用于内部规则。例如，指定在函数的括号内必须是单个空格还是没有空格：
+
+- function-parentheses-space-inside: string - "always"|"never"
+
+```css
+a { transform: translate( 1, 1 ); }
+/**                     ↑      ↑
+ * The space inside these two parentheses */
+ ```
+
+ ### READMEs
+
+ 每个规则均随附以下格式的自述文件：
+
+ 1. 规则名称
+ 2. 单行说明
+ 3. 原型代码示例
+ 4. 扩展说明（如有必要）
+ 5. Options.
+ 6. 被视为违规的示例模式（针对每个选项值）
+ 7. 不被视为违规的示例模式（针对每个选项值）
+ 8. 可选选项（如果适用）。
+
+ 单行描述的形式为：
+
+ - "Disallow ..." for no rules
+ - "Limit ..." for max rules
+ - "Require ..." for rules that accept "always" and "never" options
+ - "Specify ..." for everything else
+ 
