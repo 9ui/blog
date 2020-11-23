@@ -94,7 +94,7 @@ stylelint使用[cosmiconfig](https://github.com/davidtheclark/cosmiconfig)查找
 
 .stylelintrc文件（无扩展名）可以为JSON或YAML格式。您可以添加文件扩展名，以帮助您的文本编辑器提供语法检查和突出显示
 
-### 规则
+## 规则
 
 规则决定了linter的寻找。 stylelint内置了170多个规则。
 
@@ -567,4 +567,180 @@ a { transform: translate( 1, 1 ); }
  - "Limit ..." for max rules
  - "Require ..." for rules that accept "always" and "never" options
  - "Specify ..." for everything else
- 
+
+
+ ## Combining rules
+
+ 您可以组合规则以实施严格的约定。
+
+ 假设您要在每个声明中的冒号前不加空格，而在冒号后仅加一个空格：
+
+ ```css
+ a { color: pink; }
+/**      ↑
+ * No space before and a single space after this colon */
+ ```
+ 您可以使用以下方法实施该操作
+
+```json
+{
+  "declaration-colon-space-after": "always",
+  "declaration-colon-space-before": "never"
+}
+```
+
+有些东西（例如声明块和值列表）可能跨越多行。在这些情况下，可以使用换行规则和其他选项来提供灵活性。
+
+例如，这是value-list-comma- *规则及其选项的完整集合：
+
+- value-list-comma-space-after: "always"|"never"|"always-single-line"|"never-single-line"
+- value-list-comma-space-before: "always"|"never"|"always-single-line"|"never-single-line"
+- value-list-comma-newline-after: "always"|"always-multi-line|"never-multi-line"
+- value-list-comma-newline-before: "always"|"always-multi-line"|"never-multi-line"
+
+其中* -multi-line和* -single-line是引用值列表（事物）的地方。例如，给定：
+
+```css
+a,
+b {
+  color: red;
+  font-family: sans, serif, monospace; /* single-line value list */
+}
+  /**         ↑                    ↑
+  *           ↑                    ↑
+  *  The value list starts here and ends here */
+ ```
+
+此示例中只有一个单行值列表.选择器是多行的，声明块也是如此，规则也是如此。但是值列表不是。 *-多行和*-单行在此规则的上下文中引用值列表。
+
+### Example A
+
+假设您只想允许单行值列表。而且您想在逗号前不加空格，在逗号后加一个空格：
+
+```css
+a {
+  font-family: sans, serif, monospace;
+  box-shadow: 1px 1px 1px red, 2px 2px 1px 1px blue inset, 2px 2px 1px 2px blue inset;
+}
+```
+您可以使用以下方法实施该操作:
+
+```json
+{
+  "value-list-comma-space-after": "always",
+  "value-list-comma-space-before": "never"
+}
+```
+
+### Example B
+
+假设您要同时允许单行和多行值列表。您希望在单行列表中的逗号后面有一个空格，而在单行和多行列表中的逗号前都没有空格：
+
+```css
+a {
+  font-family: sans, serif, monospace; /* single-line value list with space after, but no space before */
+  box-shadow: 1px 1px 1px red, /* multi-line value list ... */
+    2px 2px 1px 1px blue inset, /* ... with newline after, ...  */
+    2px 2px 1px 2px blue inset; /* ... but no space before */
+}
+```
+
+您可以使用以下方法实施该操作:
+
+```json
+{
+  "value-list-comma-newline-after": "always-multi-line",
+  "value-list-comma-space-after": "always-single-line",
+  "value-list-comma-space-before": "never"
+}
+```
+
+### Example C
+
+假设您要同时允许单行和多行值列表。您希望单行列表中的逗号前没有空格，而两个列表中的逗号后总是有空格：
+
+```css
+a {
+  font-family: sans, serif, monospace;
+  box-shadow: 1px 1px 1px red
+    , 2px 2px 1px 1px blue inset
+    , 2px 2px 1px 2px blue inset;
+}
+```
+
+您可以使用以下方法实施该操作：
+
+```json
+{
+  "value-list-comma-newline-before": "always-multi-line",
+  "value-list-comma-space-after": "always",
+  "value-list-comma-space-before": "never-single-line"
+}
+```
+
+### Example D
+
+这些规则足够灵活，可以对单行和多行列表强制执行完全不同的约定.假设您要同时允许单行和多行值列表.您希望单行列表在冒号前后有一个空格。而您希望多行列表在逗号前有一个换行符，但在其后没有空格：
+
+```css
+a {
+  font-family: sans , serif , monospace; /* single-line list with a single space before and after the comma */
+  box-shadow: 1px 1px 1px red /* multi-line list ... */
+    ,2px 2px 1px 1px blue inset /* ... with newline before, ...  */
+    ,2px 2px 1px 2px blue inset; /* ... but no space after the comma */
+}
+```
+
+您可以使用以下方法实施该操作：
+
+```json
+{
+  "value-list-comma-newline-after": "never-multi-line",
+  "value-list-comma-newline-before": "always-multi-line",
+  "value-list-comma-space-after": "always-single-line",
+  "value-list-comma-space-before": "always-single-line"
+}
+```
+
+### Example E
+
+假设您要禁用单行块：
+
+```css
+  a { color: red; }
+/** ↑
+ * Declaration blocks like this */
+ ```
+
+ 使用block-opening-brace-newline-after和block-opening-brace-newline-before规则。例如，此配置：
+
+ ```json
+ {
+  "block-opening-brace-newline-after": ["always"],
+  "block-closing-brace-newline-before": ["always"]
+}
+```
+
+将允许：
+
+```css
+a {
+  color: red;
+}
+```
+
+但不是这些模式：
+
+```css
+a { color: red;
+}
+
+a {
+color: red; }
+
+a { color: red; }
+```
+
+要允许单行代码块但对多行代码块强制换行，请对两个规则都使用“ always-multi-line”选项
+
+** *-empty-line-before and *-max-empty-lines rules **
