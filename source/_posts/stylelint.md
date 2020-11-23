@@ -743,4 +743,567 @@ a { color: red; }
 
 要允许单行代码块但对多行代码块强制换行，请对两个规则都使用“ always-multi-line”选项
 
-** *-empty-line-before and *-max-empty-lines rules **
+***-empty-line-before and *-max-empty-lines rules**
+
+这些规则共同作用以控制允许使用空行的位置。
+
+每件事负责将自己推离前一事物，而不是推后一件东西。这种一致性是为了避免冲突，这就是为什么stylelint中没有任何* -empty-line-after规则的原因。
+
+假设您要执行以下操作：
+
+
+```css
+a {
+  background: green;
+  color: red;
+
+  @media (min-width: 30em) {
+    color: blue;
+  }
+}
+
+b {
+  --custom-property: green;
+
+  background: pink;
+  color: red;
+}
+```
+
+您可以执行以下操作:
+
+```json
+{
+  "at-rule-empty-line-before": [
+    "always",
+    {
+      "except": ["first-nested"]
+    }
+  ],
+  "custom-property-empty-line-before": [
+    "always",
+    {
+      "except": ["after-custom-property", "first-nested"]
+    }
+  ],
+  "declaration-empty-line-before": [
+    "always",
+    {
+      "except": ["after-declaration", "first-nested"]
+    }
+  ],
+  "block-closing-brace-empty-line-before": "never",
+  "rule-empty-line-before": ["always-multi-line"]
+}
+```
+我们建议您将主要选项（例如`always`或`never`）设置为最常见的情况，并使用可选的次要选项定义例外.除了选项外，有很多值，例如先嵌套，后注释等.
+
+`* -empty-line-before`规则控制在某事物之前是否绝对不能有空行或是否必须有一个或多个空行.`* -max-`空行规则通过控制事物中空行的数量来补充这一点。
+`max-empty-lines`规则为整个源设置了限制。然后，可以使用诸如`function-max-empty-lines`, `selector-max-empty-lines` and `value-list-max-empty-lines`之类的东西来设置更严格的限制。
+
+
+例如，假设您要强制执行以下操作：
+
+```json
+a,
+b {
+  box-shadow:
+    inset 0 2px 0 #dcffa6,
+    0 2px 5px #000;
+}
+
+c {
+  transform:
+    translate(
+      1,
+      1
+    );
+}
+```
+即整个源中最多有1个空行，但函数，选择器列表和值列表中没有空行。
+
+您可以执行以下操作：
+
+```json
+{
+  "function-max-empty-lines": 0,
+  "max-empty-lines": 1,
+  "selector-list-max-empty-lines": 0,
+  "value-list-max-empty-lines": 0
+}
+```
+
+***-allowed-list, *-disallowed-list, color-named and applicable *-no-* rules**
+
+这些规则共同作用以（禁止）语言功能和结构。
+
+有* -allowed-list和* -disallowed-list规则针对CSS语言的构造：规则，函数，声明（即属性-值对）,属性和单位。这些规则（禁止）允许使用这些结构的任何语言功能（例如@media，rgb（））.
+但是，有些功能没有被这些* -allowed-list和* -disallowed-list规则捕获（或者确实存在，但需要使用复杂的正则表达式进行配置）.有个别规则，通常是* -no- *规则（例如color-no-hex和选择器-no-id），
+以禁止使用这些功能。
+
+假设您要禁止@debug语言扩展。您可以使用at-rule-disallowed-list或at-rule-allowed-list规则来执行此操作，因为@debug语言扩展使用at-rule构造，例如
+
+```json
+{
+  "at-rule-disallowed-list": ["debug"]
+}
+```
+
+假设无论出于何种原因，您都想禁止整个规则构造。您可以使用以下方法做到这一点：
+
+```json
+{
+  "at-rule-allowed-list": []
+}
+```
+假设您要禁止边框属性的值none。您可以使用声明属性值不允许列表或声明属性值允许列表来执行此操作，例如
+
+```json
+{
+  "declaration-property-value-disallowed-list": [
+    {
+      "/^border/": ["none"]
+    }
+  ]
+}
+```
+**color-* and function-* rules**
+
+大多数<color>值都是函数。这样，可以使用功能允许列表规则或功能不允许列表规则来（禁止）使用它们。其他两种颜色表示均无效：命名颜色和十六进制颜色.有两个禁止（禁止）使用的特定规则：分别为颜色命名和不以十六进制表示的颜色。
+
+假设您要强制使用命名的颜色（如果您选择的颜色存在一种颜色），而要使用hwb的颜色（例如，不存在），例如：
+
+```css
+a {
+  background: hwb(235, 0%, 0%); /* there is no named color equivalent for this color */
+  color: black;
+}
+```
+
+如果您采用允许的方法，则可以使用以下方法：
+
+```json
+{
+  "color-named": "always-where-possible",
+  "color-no-hex": true,
+  "function-allowed-list": ["hwb"]
+}
+```
+或者，如果您采用不允许的方法：
+
+```json
+{
+  "color-named": "always-where-possible",
+  "color-no-hex": true,
+  "function-disallowed-list": ["/^rgb/", "/^hsl/", "gray"]
+}
+```
+
+这种方法可以扩展到何时使用语言扩展（使用两个内置的规则和功能的可扩展语法结构）.例如，假设您要禁止使用所有自定义颜色表示功能（例如，我的颜色（红色，带有绿色的虚线/ 5％）。您可以执行以下操作：
+
+```json
+{
+  "color-named": "never",
+  "color-no-hex": true,
+  "function-allowed-list": ["my-color"]
+}
+```
+
+### 处理冲突
+
+每个规则都是独立的，因此有时可以配置规则以使它们彼此冲突。例如，您可以打开两个冲突的允许和禁止列表规则，例如允许单位列表和不允许单位列表。
+
+作为配置作者，您有责任解决这些冲突。
+
+## Using regex in rules
+
+以下规则类别支持正则表达式：
+
+- *-allowed-list
+- *-disallowed-list
+- *-pattern
+
+忽略*次要选项也是如此。
+
+
+
+### Enforce a case
+
+您可以使用与所选大小写约定相对应的正则表达式：
+
+- kebab-case: ^([a-z][a-z0-9]*)(-[a-z0-9]+)*$
+- lowerCamelCase: ^[a-z][a-zA-Z0-9]+$
+- snake_case: ^([a-z][a-z0-9]*)(_[a-z0-9]+)*$
+- UpperCamelCase: ^[A-Z][a-zA-Z0-9]+$
+
+例如，对于LowerCamelCase类选择器，请使用“ selector-class-pattern”：“ ^ [a-z] [a-zA-Z0-9] + $”。
+
+所有这些模式均不允许CSS标识符以数字，两个连字符或连字符后跟一个数字开头
+
+### Enforce a prefix
+您可以使用否定的前瞻正则表达式来确保前缀。
+
+例如，要确保所有自定义属性均以my-开头，请使用“ custom-property-pattern”：“ ^（?! my-）”。
+
+## List of rules
+
+首先按以下类别分组，然后按它们适用的thing分组
+
+- 可能的错误
+- 限制语言功能
+- 风格问题
+
+
+### 可能的错误
+
+#### Color
+
+- color-no-invalid-hex: 禁止使用无效的十六进制颜色
+
+#### Font family
+- font-family-no-duplicate-names: 禁止使用重复的字体系列名称。
+- font-family-no-missing-generic-family-keyword: 禁止在字体系列名称列表中缺少通用系列
+
+#### String
+
+- string-no-newline: 禁止在字符串中使用（未转义的）换行符
+
+#### Unit
+
+- unit-no-unknown: 禁止使用未知单位.
+
+#### Property
+
+- property-no-unknown: 禁止未知属性
+
+#### Keyframe declaration
+
+- keyframe-declaration-no-important: 在关键帧声明中禁止！important。
+
+#### Declaration block
+
+- declaration-block-no-duplicate-properties: 禁止在声明块中使用重复属性。
+- declaration-block-no-shorthand-property-overrides: 禁止覆盖相关的速记属性的速记属性
+
+
+#### Block
+
+block-no-empty: 禁止空块。
+
+
+#### Selector
+
+- selector-pseudo-class-no-unknown: 禁止使用未知的伪类选择器。
+- selector-pseudo-element-no-unknown: 禁止使用未知的伪元素选择器。
+- selector-type-no-unknown: 禁止使用未知类型选择器。
+
+
+#### Media feature
+
+- media-feature-name-no-unknown: 禁止使用未知的媒体功能名称。
+
+#### At-rule
+
+- at-rule-no-unknown: 禁止使用未知规则。
+
+#### Comment
+
+- comment-no-empty: 禁止空评论。
+
+#### General / Sheet
+
+- no-descending-specificity: 禁止较低特异性的选择器在覆盖较高特异性的选择器之后出现。
+- no-duplicate-at-import-rules: 禁止在样式表中使用重复的@import规则。
+- no-duplicate-selectors: 禁止在样式表中使用重复的选择器。
+- no-empty-source: 禁止空来源。
+- no-extra-semicolons: 禁止使用多余的分号（可自动修复）。
+- no-invalid-double-slash-comments: 禁止CSS不支持的双斜杠注释（// ...）。
+
+### 限制语言功能
+
+#### Alpha-value
+
+- alpha-value-notation: 为Alpha值指定百分比或数字符号（可自动修复）
+
+#### Hue
+- hue-degree-notation: 指定色调的数字或角度符号（可自动修复）
+
+#### Color
+
+- color-function-notation: 为适用的颜色功能指定现代或旧式表示法（可自动修复）
+- color-named: 要求（如果可能）或禁止命名的颜色。
+- color-no-hex: 禁止使用十六进制颜色
+
+#### Length
+
+- length-zero-no-unit: 不允许长度为零的单位（可自动修复）。
+
+#### Font weight
+
+- font-weight-notation: 需要数字或命名（尽可能）的字体粗细值。另外，当需要命名值时，仅需要有效名称。
+
+#### Function
+
+- function-allowed-list: 指定允许的功能列表。
+- function-blacklist: 指定禁止的功能列表。 （已弃用）
+- function-disallowed-list: 指定禁止的功能列表。
+- function-url-no-scheme-relative: 禁止使用相对于方案的网址。
+- function-url-scheme-allowed-list: 指定允许的URL方案的列表
+- function-url-scheme-blacklist: 指定不允许的URL方案列表。 （已弃用）
+- function-url-scheme-disallowed-list: 指定不允许的URL方案列表。
+- function-url-scheme-whitelist: 指定允许的URL方案的列表。 （已弃用）
+- function-whitelist: 指定允许的功能列表。 （已弃用）
+
+#### Keyframes
+
+- keyframes-name-pattern: 指定关键帧名称的模式。
+
+#### Number
+
+- number-max-precision: 限制数字中允许的小数位数。
+
+#### Time
+
+- time-min-milliseconds: 指定时间值的最小毫秒数。
+
+#### Unit
+
+- unit-allowed-list: 指定允许的单位列表。
+- unit-blacklist: 指定不允许的单位列表。 （已弃用）
+- unit-disallowed-list: 指定不允许的单位列表。
+- unit-whitelist: 指定允许的单位列表。 （已弃用）
+
+#### Shorthand property
+
+- shorthand-property-no-redundant-values: 禁止在速记属性中使用冗余值（可自动修复）。
+
+#### Value
+
+- value-no-vendor-prefix: 禁止使用值的供应商前缀（可自动修复）。
+
+#### Custom property
+
+custom-property-pattern: 指定自定义属性的模式。
+
+#### Property
+
+- property-allowed-list: 指定允许的属性列表。
+- property-blacklist: 指定不允许的属性列表。 （已弃用）
+- property-disallowed-list: 指定不允许的属性列表。
+- property-no-vendor-prefix: 禁止使用属性的供应商前缀（可自动修复）。
+- property-whitelist: 指定允许的属性列表。 （已弃用）
+
+#### Declaration
+
+- declaration-block-no-redundant-longhand-properties: 禁止将可合并为一个速记属性的速记属性。
+- declaration-no-important: 在声明中禁止！important。
+- declaration-property-unit-allowed-list: 在声明中指定允许的属性和单元对的列表。
+- declaration-property-unit-blacklist: 在声明中指定不允许的属性和单元对的列表。 （已弃用）
+- declaration-property-unit-disallowed-list: 在声明中指定不允许的属性和单元对的列表。
+- declaration-property-unit-whitelist: 在声明中指定允许的属性和单元对的列表。 （已弃用）
+- declaration-property-value-allowed-list: 在声明中指定允许的属性和值对的列表。
+- declaration-property-value-blacklist: 在声明中指定不允许的属性和值对的列表。 （已弃用）
+- declaration-property-value-disallowed-list: 在声明中指定不允许的属性和值对的列表。
+- declaration-property-value-whitelist: 在声明中指定允许的属性和值对的列表。 （已弃用）
+
+#### Declaration block
+
+- declaration-block-single-line-max-declarations: 限制单行声明块中的声明数量。
+
+#### Selector
+
+- selector-attribute-name-disallowed-list: 指定不允许的属性名称的列表。
+- selector-attribute-operator-allowed-list: 指定允许的属性运算符的列表。
+- selector-attribute-operator-blacklist: 指定不允许的属性运算符的列表。 （已弃用）
+- selector-attribute-operator-disallowed-list: 指定不允许的属性运算符的列表。
+- selector-attribute-operator-whitelist: 指定允许的属性运算符的列表。 （已弃用）
+- selector-class-pattern: 为类选择器指定一个模式。
+- selector-combinator-allowed-list: 指定允许的组合器列表。
+- selector-combinator-blacklist: 指定不允许的组合器列表。 （已弃用）
+- selector-combinator-disallowed-list: 指定不允许的组合器列表。
+- selector-combinator-whitelist: 指定允许的组合器列表。 （已弃用）
+- selector-id-pattern: 指定ID选择器的模式。
+- selector-max-attribute: 限制选择器中属性选择器的数量。
+- selector-max-class: 限制选择器中的类数。
+- selector-max-combinators: 限制选择器中组合器的数量。
+- selector-max-compound-selectors: 限制选择器中复合选择器的数量。
+- selector-max-empty-lines: 限制选择器中相邻空行的数量（可自动修复）。
+- selector-max-id: 限制选择器中ID选择器的数量。
+- selector-max-pseudo-class: 限制选择器中伪类的数量。
+- selector-max-specificity: 限制选择器的特异性
+- selector-max-type: 限制选择器中的类型数。
+- selector-max-universal: 限制选择器中通用选择器的数量。
+- selector-nested-pattern: 为嵌套在规则内的规则选择器指定一个模式。
+- selector-no-qualifying-type: 禁止按类型限定选择器。
+- selector-no-vendor-prefix: 禁止选择器的供应商前缀（可自动修复）。
+- selector-pseudo-class-allowed-list: 指定允许的伪类选择器的列表。
+- selector-pseudo-class-blacklist: 指定不允许的伪类选择器的列表。 （已弃用）
+- selector-pseudo-class-disallowed-list: 指定不允许的伪类选择器的列表。
+- selector-pseudo-class-whitelist: 指定允许的伪类选择器的列表。 （已弃用）
+- selector-pseudo-element-allowed-list: 指定允许的伪元素选择器列表。
+- selector-pseudo-element-blacklist: 指定一个不允许的伪元素选择器列表。 （已弃用）
+- selector-pseudo-element-colon-notation: 为适用的伪元素指定单冒号或双冒号表示法（可自动修复）。
+- selector-pseudo-element-disallowed-list: 指定不允许的伪元素选择器列表。
+- selector-pseudo-element-whitelist: 指定允许的伪元素选择器列表。 （已弃用）
+
+#### Media feature
+
+- media-feature-name-allowed-list: 指定允许的媒体功能名称列表。
+- media-feature-name-blacklist: 指定不允许的媒体功能名称列表。 （已弃用）
+- media-feature-name-disallowed-list: 指定不允许的媒体功能名称列表。
+- media-feature-name-no-vendor-prefix: 禁止使用媒体功能名称的供应商前缀（可自动修复）。
+- media-feature-name-value-allowed-list: 指定允许的媒体功能名称和值对的列表。
+- media-feature-name-value-whitelist: 指定允许的媒体功能名称和值对的列表。 （已弃用）
+- media-feature-name-whitelist: 指定允许的媒体功能名称列表。 （已弃用）
+
+#### Custom media
+- custom-media-pattern: Specify a pattern for custom media query names.
+
+#### At-rule
+- at-rule-allowed-list: Specify a list of allowed at-rules.
+- at-rule-blacklist: Specify a list of disallowed at-rules. (deprecated)
+- at-rule-disallowed-list: Specify a list of disallowed at-rules.
+- at-rule-no-vendor-prefix: Disallow vendor prefixes for at-rules (Autofixable).
+- at-rule-property-required-list: Specify a list of required properties for an at-rule.
+- at-rule-property-requirelist: Specify a list of required properties for an at-rule. (deprecated)
+- at-rule-whitelist: Specify a list of allowed at-rules. (deprecated)
+
+#### Comment
+- comment-pattern: Specify a pattern for comments.
+- comment-word-blacklist: Specify a list of disallowed words within comments. (deprecated)
+- comment-word-disallowed-list: Specify a list of disallowed words within comments.
+
+#### General / Sheet
+- max-nesting-depth: Limit the depth of nesting.
+- no-unknown-animations: Disallow unknown animations.
+
+### 风格问题
+
+#### Color
+- color-hex-case: Specify lowercase or uppercase for hex colors (Autofixable).
+- color-hex-length: Specify short or long notation for hex colors (Autofixable).
+
+#### Font family
+- font-family-name-quotes: Specify whether or not quotation marks should be used around font family names.
+
+#### Function
+- function-comma-newline-after: Require a newline or disallow whitespace after the commas of functions (Autofixable).
+- function-comma-newline-before: Require a newline or disallow whitespace before the commas of functions (Autofixable).
+- function-comma-space-after: Require a single space or disallow whitespace after the commas of functions (Autofixable).
+- function-comma-space-before: Require a single space or disallow whitespace before the commas of functions (Autofixable).
+- function-max-empty-lines: Limit the number of adjacent empty lines within functions (Autofixable).
+- function-name-case: Specify lowercase or uppercase for function names (Autofixable).
+- function-parentheses-newline-inside: Require a newline or disallow whitespace on the inside of the parentheses of functions (Autofixable).
+- function-parentheses-space-inside: Require a single space or disallow whitespace on the inside of the parentheses of functions (Autofixable).
+- function-url-quotes: Require or disallow quotes for urls.
+- function-whitespace-after: Require or disallow whitespace after functions (Autofixable).
+
+#### Number
+- number-leading-zero: Require or disallow a leading zero for fractional numbers less than 1 (Autofixable).
+- number-no-trailing-zeros: Disallow trailing zeros in numbers (Autofixable).
+
+#### String
+- string-quotes: Specify single or double quotes around strings (Autofixable).
+
+#### Unit
+- unit-case: Specify lowercase or uppercase for units (Autofixable).
+
+#### Value
+- value-keyword-case: Specify lowercase or uppercase for keywords values (Autofixable).
+
+#### Value list
+- value-list-comma-newline-after: Require a newline or disallow whitespace after the commas of value lists (Autofixable).
+- value-list-comma-newline-before: Require a newline or disallow whitespace before the commas of value lists.
+- value-list-comma-space-after: Require a single space or disallow whitespace after the commas of value lists (Autofixable).
+- value-list-comma-space-before: Require a single space or disallow whitespace before the commas of value lists (Autofixable).
+- value-list-max-empty-lines: Limit the number of adjacent empty lines within value lists (Autofixable).
+
+#### Custom property
+- custom-property-empty-line-before: Require or disallow an empty line before custom properties (Autofixable).
+
+#### Property
+- property-case: Specify lowercase or uppercase for properties (Autofixable).
+
+#### Declaration
+- declaration-bang-space-after: Require a single space or disallow whitespace after the bang of declarations (Autofixable).
+- declaration-bang-space-before: Require a single space or disallow whitespace before the bang of declarations (Autofixable).
+- declaration-colon-newline-after: Require a newline or disallow whitespace after the colon of declarations (Autofixable).
+- declaration-colon-space-after: Require a single space or disallow whitespace after the colon of declarations (Autofixable).
+- declaration-colon-space-before: Require a single space or disallow whitespace before the colon of declarations (Autofixable).
+- declaration-empty-line-before: Require or disallow an empty line before declarations (Autofixable).
+
+#### Declaration block
+- declaration-block-semicolon-newline-after: Require a newline or disallow whitespace after the semicolons of declaration blocks (Autofixable).
+- declaration-block-semicolon-newline-before: Require a newline or disallow whitespace before the semicolons of declaration blocks.
+- declaration-block-semicolon-space-after: Require a single space or disallow whitespace after the semicolons of declaration blocks (Autofixable).
+- declaration-block-semicolon-space-before: Require a single space or disallow whitespace before the semicolons of declaration blocks (Autofixable).
+- declaration-block-trailing-semicolon: Require or disallow a trailing semicolon within declaration blocks (Autofixable).
+
+#### Block
+- block-closing-brace-empty-line-before: Require or disallow an empty line before the closing brace of blocks (Autofixable).
+- block-closing-brace-newline-after: Require a newline or disallow whitespace after the closing brace of blocks (Autofixable).
+- block-closing-brace-newline-before: Require a newline or disallow whitespace before the closing brace of blocks (Autofixable).
+- block-closing-brace-space-after: Require a single space or disallow whitespace after the closing brace of blocks.
+- block-closing-brace-space-before: Require a single space or disallow whitespace before the closing brace of blocks (Autofixable).
+- block-opening-brace-newline-after: Require a newline after the opening brace of blocks (Autofixable).
+- block-opening-brace-newline-before: Require a newline or disallow whitespace before the opening brace of blocks (Autofixable).
+- block-opening-brace-space-after: Require a single space or disallow whitespace after the opening brace of blocks (Autofixable).
+- block-opening-brace-space-before: Require a single space or disallow whitespace before the opening brace of blocks (Autofixable).
+
+#### Selector
+- selector-attribute-brackets-space-inside: Require a single space or disallow whitespace on the inside of the brackets within attribute selectors (Autofixable).
+- selector-attribute-operator-space-after: Require a single space or disallow whitespace after operators within attribute selectors (Autofixable).
+- selector-attribute-operator-space-before: Require a single space or disallow whitespace before operators within attribute selectors (Autofixable).
+- selector-attribute-quotes: Require or disallow quotes for attribute values.
+- selector-combinator-space-after: Require a single space or disallow whitespace after the combinators of selectors (Autofixable).
+- selector-combinator-space-before: Require a single space or disallow whitespace before the combinators of selectors (Autofixable).
+- selector-descendant-combinator-no-non-space: Disallow non-space characters for descendant combinators of selectors (Autofixable).
+- selector-pseudo-class-case: Specify lowercase or uppercase for pseudo-class selectors (Autofixable).
+- selector-pseudo-class-parentheses-space-inside: Require a single space or disallow whitespace on the inside of the parentheses within pseudo-class selectors (Autofixable).
+- selector-pseudo-element-case: Specify lowercase or uppercase for pseudo-element selectors (Autofixable).
+- selector-type-case: Specify lowercase or uppercase for type selectors (Autofixable).
+
+#### Selector list
+- selector-list-comma-newline-after: Require a newline or disallow whitespace after the commas of selector lists (Autofixable).
+- selector-list-comma-newline-before: Require a newline or disallow whitespace before the commas of selector lists (Autofixable).
+- selector-list-comma-space-after: Require a single space or disallow whitespace after the commas of selector lists (Autofixable).
+- selector-list-comma-space-before: Require a single space or disallow whitespace before the commas of selector lists (Autofixable).
+
+#### Rule
+- rule-empty-line-before: Require or disallow an empty line before rules (Autofixable).
+
+#### Media feature
+- media-feature-colon-space-after: Require a single space or disallow whitespace after the colon in media features (Autofixable).
+- media-feature-colon-space-before: Require a single space or disallow whitespace before the colon in media features (Autofixable).
+- media-feature-name-case: Specify lowercase or uppercase for media feature names (Autofixable).
+- media-feature-parentheses-space-inside: Require a single space or disallow whitespace on the inside of the parentheses within media features (Autofixable).
+- media-feature-range-operator-space-after: Require a single space or disallow whitespace after the range operator in media features (Autofixable).
+- media-feature-range-operator-space-before: Require a single space or disallow whitespace before the range operator in media features (Autofixable).
+
+#### Media query list
+- media-query-list-comma-newline-after: Require a newline or disallow whitespace after the commas of media query lists (Autofixable).
+- media-query-list-comma-newline-before: Require a newline or disallow whitespace before the commas of media query lists.
+- media-query-list-comma-space-after: Require a single space or disallow whitespace after the commas of media query lists (Autofixable).
+- media-query-list-comma-space-before: Require a single space or disallow whitespace before the commas of media query lists (Autofixable).
+
+####  At-rule
+- at-rule-empty-line-before: Require or disallow an empty line before at-rules (Autofixable).
+- at-rule-name-case: Specify lowercase or uppercase for at-rules names (Autofixable).
+- at-rule-name-newline-after: Require a newline after at-rule names.
+- at-rule-name-space-after: Require a single space after at-rule names (Autofixable).
+- at-rule-semicolon-newline-after: Require a newline after the semicolon of at-rules (Autofixable).
+- at-rule-semicolon-space-before: Require a single space or disallow whitespace before the semicolons of at-rules.
+
+#### Comment
+- comment-empty-line-before: Require or disallow an empty line before comments (Autofixable).
+- comment-whitespace-inside: Require or disallow whitespace on the inside of comment markers (Autofixable).
+
+#### General / Sheet
+- indentation: Specify indentation (Autofixable).
+- linebreaks: Specify unix or windows linebreaks (Autofixable).
+- max-empty-lines: Limit the number of adjacent empty lines (Autofixable).
+- max-line-length: Limit the length of a line.
+- no-eol-whitespace: Disallow end-of-line whitespace (Autofixable).
+- no-missing-end-of-source-newline: Disallow missing end-of-source newlines (Autofixable).
+- no-empty-first-line: Disallow empty first lines (Autofixable).
+- unicode-bom: Require or disallow Unicode BOM.
