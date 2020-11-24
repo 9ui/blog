@@ -1157,153 +1157,352 @@ custom-property-pattern: 指定自定义属性的模式。
 - media-feature-name-whitelist: 指定允许的媒体功能名称列表。 （已弃用）
 
 #### Custom media
-- custom-media-pattern: Specify a pattern for custom media query names.
+- custom-media-pattern: 指定自定义媒体查询名称的模式。
 
 #### At-rule
-- at-rule-allowed-list: Specify a list of allowed at-rules.
-- at-rule-blacklist: Specify a list of disallowed at-rules. (deprecated)
-- at-rule-disallowed-list: Specify a list of disallowed at-rules.
-- at-rule-no-vendor-prefix: Disallow vendor prefixes for at-rules (Autofixable).
-- at-rule-property-required-list: Specify a list of required properties for an at-rule.
-- at-rule-property-requirelist: Specify a list of required properties for an at-rule. (deprecated)
-- at-rule-whitelist: Specify a list of allowed at-rules. (deprecated)
+- at-rule-allowed-list: 指定允许的规则列表。
+- at-rule-blacklist: 指定禁止规则的列表。 （已弃用）
+- at-rule-disallowed-list: 指定禁止规则的列表。
+- at-rule-no-vendor-prefix: 禁止规则的供应商前缀（可自动修复）。
+- at-rule-property-required-list: 指定规则的必需属性列表。
+- at-rule-property-requirelist: 指定规则的必需属性列表。 （已弃用）
+- at-rule-whitelist: 指定允许的规则列表。 （已弃用）
 
 #### Comment
-- comment-pattern: Specify a pattern for comments.
-- comment-word-blacklist: Specify a list of disallowed words within comments. (deprecated)
-- comment-word-disallowed-list: Specify a list of disallowed words within comments.
+- comment-pattern:指定注释模式。
+- comment-word-blacklist: 在注释中指定禁止使用的单词的列表。 （已弃用）
+- comment-word-disallowed-list: 在注释中指定禁止使用的单词的列表。
 
 #### General / Sheet
-- max-nesting-depth: Limit the depth of nesting.
-- no-unknown-animations: Disallow unknown animations.
+- max-nesting-depth: 限制嵌套的深度。
+- no-unknown-animations: 禁止未知动画。
 
 ### 风格问题
 
 #### Color
-- color-hex-case: Specify lowercase or uppercase for hex colors (Autofixable).
-- color-hex-length: Specify short or long notation for hex colors (Autofixable).
+- color-hex-case: 为十六进制颜色指定小写或大写（可自动修复）。
+- color-hex-length: 指定十六进制颜色的短或长表示法（可自动修复）。
 
 #### Font family
-- font-family-name-quotes: Specify whether or not quotation marks should be used around font family names.
+- font-family-name-quotes: 指定是否在字体系列名称周围使用引号。
 
 #### Function
-- function-comma-newline-after: Require a newline or disallow whitespace after the commas of functions (Autofixable).
-- function-comma-newline-before: Require a newline or disallow whitespace before the commas of functions (Autofixable).
-- function-comma-space-after: Require a single space or disallow whitespace after the commas of functions (Autofixable).
-- function-comma-space-before: Require a single space or disallow whitespace before the commas of functions (Autofixable).
-- function-max-empty-lines: Limit the number of adjacent empty lines within functions (Autofixable).
-- function-name-case: Specify lowercase or uppercase for function names (Autofixable).
-- function-parentheses-newline-inside: Require a newline or disallow whitespace on the inside of the parentheses of functions (Autofixable).
-- function-parentheses-space-inside: Require a single space or disallow whitespace on the inside of the parentheses of functions (Autofixable).
-- function-url-quotes: Require or disallow quotes for urls.
-- function-whitespace-after: Require or disallow whitespace after functions (Autofixable).
+- function-comma-newline-after: 在功能的逗号（可自动修复）后面需要换行符或不允许使用空格。
+- function-comma-newline-before: 在功能的逗号之前需要换行符或禁止使用空格（可自动修复）。
+- function-comma-space-after: 在功能的逗号（可自动修复）后面需要一个空格或不允许空格。
+- function-comma-space-before: 在功能的逗号之前需要一个空格或不允许空格（可自动修复）。
+- function-max-empty-lines: 限制函数内相邻行的数量（可自动修复）。
+- function-name-case: 将函数名称指定为小写或大写（可自动修复）
+- function-parentheses-newline-inside: 在函数的括号内需要换行符或禁止使用空格（可自动修复）。
+- function-parentheses-space-inside: 在函数的括号内需要一个空格或不允许使用空格（可自动修复）。
+- function-url-quotes: 要求或禁止使用网址引号。
+- function-whitespace-after: 功能后要求或禁止使用空格（可自动修复）。
 
 #### Number
-- number-leading-zero: Require or disallow a leading zero for fractional numbers less than 1 (Autofixable).
-- number-no-trailing-zeros: Disallow trailing zeros in numbers (Autofixable).
+- number-leading-zero: 对于小于1的小数，要求或不允许前导零（可自动修复）。
+- number-no-trailing-zeros:禁止数字尾随零（可自动修复）。
 
 #### String
-- string-quotes: Specify single or double quotes around strings (Autofixable).
+- string-quotes: 在字符串周围指定单引号或双引号（可自动修复）。
 
 #### Unit
-- unit-case: Specify lowercase or uppercase for units (Autofixable).
+- unit-case: 指定单位的小写或大写（可自动修复）。
 
 #### Value
-- value-keyword-case: Specify lowercase or uppercase for keywords values (Autofixable).
+- value-keyword-case: 将关键字值指定为小写或大写（可自动修复）。
 
 #### Value list
-- value-list-comma-newline-after: Require a newline or disallow whitespace after the commas of value lists (Autofixable).
-- value-list-comma-newline-before: Require a newline or disallow whitespace before the commas of value lists.
-- value-list-comma-space-after: Require a single space or disallow whitespace after the commas of value lists (Autofixable).
-- value-list-comma-space-before: Require a single space or disallow whitespace before the commas of value lists (Autofixable).
-- value-list-max-empty-lines: Limit the number of adjacent empty lines within value lists (Autofixable).
+- value-list-comma-newline-after: 值列表的逗号后需要换行符或不允许空格（可自动修复）。
+- value-list-comma-newline-before: 在值列表的逗号之前需要换行符或禁止使用空格。
+- value-list-comma-space-after: 值列表的逗号后必须有一个空格或不允许空格（可自动修复）。
+- value-list-comma-space-before: 值列表的逗号前需要一个空格或不允许空格（可自动修复）。
+- value-list-max-empty-lines: 限制值列表中相邻空行的数量（可自动修复）。
 
 #### Custom property
-- custom-property-empty-line-before: Require or disallow an empty line before custom properties (Autofixable).
+- custom-property-empty-line-before: 自定义属性前需要或禁止使用空行（可自动修复）。
 
 #### Property
-- property-case: Specify lowercase or uppercase for properties (Autofixable).
+- property-case: 为属性指定小写或大写（可自动修复）。
 
 #### Declaration
-- declaration-bang-space-after: Require a single space or disallow whitespace after the bang of declarations (Autofixable).
-- declaration-bang-space-before: Require a single space or disallow whitespace before the bang of declarations (Autofixable).
-- declaration-colon-newline-after: Require a newline or disallow whitespace after the colon of declarations (Autofixable).
-- declaration-colon-space-after: Require a single space or disallow whitespace after the colon of declarations (Autofixable).
-- declaration-colon-space-before: Require a single space or disallow whitespace before the colon of declarations (Autofixable).
-- declaration-empty-line-before: Require or disallow an empty line before declarations (Autofixable).
+- declaration-bang-space-after: 声明后必须要有一个空格或不允许空格（可自动修复）。
+- declaration-bang-space-before: 在声明的开头之前需要一个空格或禁止空格（可自动修复）。
+- declaration-colon-newline-after: 在声明冒号后需要换行符或禁止空格（可自动修复）。
+- declaration-colon-space-after: 声明的冒号后必须有一个空格或不允许使用空格（可自动修复）。
+- declaration-colon-space-before: 在冒号之前需要一个空格或禁止空格（可自动修复）。
+- declaration-empty-line-before: 在声明之前要求或禁止使用空行（可自动修复）。
 
 #### Declaration block
-- declaration-block-semicolon-newline-after: Require a newline or disallow whitespace after the semicolons of declaration blocks (Autofixable).
-- declaration-block-semicolon-newline-before: Require a newline or disallow whitespace before the semicolons of declaration blocks.
-- declaration-block-semicolon-space-after: Require a single space or disallow whitespace after the semicolons of declaration blocks (Autofixable).
-- declaration-block-semicolon-space-before: Require a single space or disallow whitespace before the semicolons of declaration blocks (Autofixable).
-- declaration-block-trailing-semicolon: Require or disallow a trailing semicolon within declaration blocks (Autofixable).
+- declaration-block-semicolon-newline-after: 在声明块的分号后需要换行符或禁止空格(可自动修复).
+- declaration-block-semicolon-newline-before: 在声明块的分号之前需要换行符或禁止空格。
+- declaration-block-semicolon-space-after:在声明块的分号后需要一个空格或禁止空格 (可自动修复).
+- declaration-block-semicolon-space-before: 在声明块的分号之前需要一个空格或禁止空格 (可自动修复).
+- declaration-block-trailing-semicolon: 在声明块中要求或禁止尾部分号 (可自动修复).
 
 #### Block
-- block-closing-brace-empty-line-before: Require or disallow an empty line before the closing brace of blocks (Autofixable).
-- block-closing-brace-newline-after: Require a newline or disallow whitespace after the closing brace of blocks (Autofixable).
-- block-closing-brace-newline-before: Require a newline or disallow whitespace before the closing brace of blocks (Autofixable).
-- block-closing-brace-space-after: Require a single space or disallow whitespace after the closing brace of blocks.
-- block-closing-brace-space-before: Require a single space or disallow whitespace before the closing brace of blocks (Autofixable).
-- block-opening-brace-newline-after: Require a newline after the opening brace of blocks (Autofixable).
-- block-opening-brace-newline-before: Require a newline or disallow whitespace before the opening brace of blocks (Autofixable).
-- block-opening-brace-space-after: Require a single space or disallow whitespace after the opening brace of blocks (Autofixable).
-- block-opening-brace-space-before: Require a single space or disallow whitespace before the opening brace of blocks (Autofixable).
+- block-closing-brace-empty-line-before: 在块的大括号之前要求或不允许空行 (可自动修复).
+- block-closing-brace-newline-after: 块的右大括号后需要换行符或禁止空格 (可自动修复).
+- block-closing-brace-newline-before: 在块的大括号之前需要换行符或禁止空格 (可自动修复).
+- block-closing-brace-space-after: 块的大括号后需要一个空格或不允许空格。
+- block-closing-brace-space-before:在块的大括号之前需要一个空格或不允许空格 (可自动修复).
+- block-opening-brace-newline-after: 块大括号后需要换行 (可自动修复).
+- block-opening-brace-newline-before: 在块的大括号之前需要换行符或禁止空格 (可自动修复).
+- block-opening-brace-space-after:块的大括号后需要一个空格或不允许空格 (可自动修复).
+- block-opening-brace-space-before: 在块的开头大括号之前等于一个空格或禁止空格 (可自动修复).
 
 #### Selector
-- selector-attribute-brackets-space-inside: Require a single space or disallow whitespace on the inside of the brackets within attribute selectors (Autofixable).
-- selector-attribute-operator-space-after: Require a single space or disallow whitespace after operators within attribute selectors (Autofixable).
-- selector-attribute-operator-space-before: Require a single space or disallow whitespace before operators within attribute selectors (Autofixable).
-- selector-attribute-quotes: Require or disallow quotes for attribute values.
-- selector-combinator-space-after: Require a single space or disallow whitespace after the combinators of selectors (Autofixable).
-- selector-combinator-space-before: Require a single space or disallow whitespace before the combinators of selectors (Autofixable).
-- selector-descendant-combinator-no-non-space: Disallow non-space characters for descendant combinators of selectors (Autofixable).
-- selector-pseudo-class-case: Specify lowercase or uppercase for pseudo-class selectors (Autofixable).
-- selector-pseudo-class-parentheses-space-inside: Require a single space or disallow whitespace on the inside of the parentheses within pseudo-class selectors (Autofixable).
-- selector-pseudo-element-case: Specify lowercase or uppercase for pseudo-element selectors (Autofixable).
-- selector-type-case: Specify lowercase or uppercase for type selectors (Autofixable).
+- selector-attribute-brackets-space-inside: 在属性选择器中的括号内需要一个空格或不允许空格 (可自动修复).
+- selector-attribute-operator-space-after: 属性选择器中的运算符后需要一个空格或不允许空格 (可自动修复).
+- selector-attribute-operator-space-before: 属性选择器中的运算符之前需要一个空格或不允许空格 (可自动修复).
+- selector-attribute-quotes: 要求或禁止对属性值使用引号。
+- selector-combinator-space-after: 在选择器的组合符后面等于一个空格或禁止空格 (可自动修复).
+- selector-combinator-space-before: 选择器的组合器之前需要一个空格或不允许空格 (可自动修复).
+- selector-descendant-combinator-no-non-space: 不允许选择器的后代组合器使用非空格字符 (可自动修复).
+- selector-pseudo-class-case: 为伪类选择器指定小写或大写 (可自动修复).
+- selector-pseudo-class-parentheses-space-inside: 在伪类选择器内的括号内部需要单个空格或不允许空格 (可自动修复).
+- selector-pseudo-element-case: 为伪元素选择器指定小写或大写(可自动修复).
+- selector-type-case: 为类型选择器指定小写或大写 (可自动修复).
 
 #### Selector list
-- selector-list-comma-newline-after: Require a newline or disallow whitespace after the commas of selector lists (Autofixable).
-- selector-list-comma-newline-before: Require a newline or disallow whitespace before the commas of selector lists (Autofixable).
-- selector-list-comma-space-after: Require a single space or disallow whitespace after the commas of selector lists (Autofixable).
-- selector-list-comma-space-before: Require a single space or disallow whitespace before the commas of selector lists (Autofixable).
+- selector-list-comma-newline-after: 选择器列表的逗号后需要换行符或禁止空格 (可自动修复).
+- selector-list-comma-newline-before: 在选择器列表的逗号之前需要换行符或禁止空格 (可自动修复).
+- selector-list-comma-space-after: 选择器列表的逗号后需要一个空格或不允许空格 (可自动修复).
+- selector-list-comma-space-before: 选择器列表的逗号前需要一个空格或不允许空格 (可自动修复).
 
 #### Rule
-- rule-empty-line-before: Require or disallow an empty line before rules (Autofixable).
+- rule-empty-line-before: 规则前要求或禁止空行 (可自动修复).
 
 #### Media feature
-- media-feature-colon-space-after: Require a single space or disallow whitespace after the colon in media features (Autofixable).
-- media-feature-colon-space-before: Require a single space or disallow whitespace before the colon in media features (Autofixable).
-- media-feature-name-case: Specify lowercase or uppercase for media feature names (Autofixable).
-- media-feature-parentheses-space-inside: Require a single space or disallow whitespace on the inside of the parentheses within media features (Autofixable).
-- media-feature-range-operator-space-after: Require a single space or disallow whitespace after the range operator in media features (Autofixable).
-- media-feature-range-operator-space-before: Require a single space or disallow whitespace before the range operator in media features (Autofixable).
+- media-feature-colon-space-after: 媒体功能中的冒号后需要单个空格或禁止空格 (可自动修复).
+- media-feature-colon-space-before: 媒体功能中的冒号之前需要单个空格或禁止空格 (可自动修复).
+- media-feature-name-case: 指定媒体功能名称的小写或大写 (可自动修复).
+- media-feature-parentheses-space-inside: 媒体功能中括号内必须有一个空格或不允许使用空格 (Autofixable).
+- media-feature-range-operator-space-after: 媒体功能中的范围运算符后需要一个空格或不允许空格 (可自动修复).
+- media-feature-range-operator-space-before: 媒体功能中的范围运算符之前需要单个空格或禁止空格 (可自动修复).
 
 #### Media query list
-- media-query-list-comma-newline-after: Require a newline or disallow whitespace after the commas of media query lists (Autofixable).
-- media-query-list-comma-newline-before: Require a newline or disallow whitespace before the commas of media query lists.
-- media-query-list-comma-space-after: Require a single space or disallow whitespace after the commas of media query lists (Autofixable).
-- media-query-list-comma-space-before: Require a single space or disallow whitespace before the commas of media query lists (Autofixable).
+- media-query-list-comma-newline-after: 媒体查询列表的逗号后需要换行符或禁止空格 (可自动修复).
+- media-query-list-comma-newline-before: 在媒体查询列表的逗号之前，需要换行符或禁止使用空格
+- media-query-list-comma-space-after: 媒体查询列表的逗号后需要一个空格或不允许空格 (可自动修复).
+- media-query-list-comma-space-before: 在媒体查询列表的逗号前需要一个空格或不允许空格 (可自动修复).
 
 ####  At-rule
-- at-rule-empty-line-before: Require or disallow an empty line before at-rules (Autofixable).
-- at-rule-name-case: Specify lowercase or uppercase for at-rules names (Autofixable).
-- at-rule-name-newline-after: Require a newline after at-rule names.
-- at-rule-name-space-after: Require a single space after at-rule names (Autofixable).
-- at-rule-semicolon-newline-after: Require a newline after the semicolon of at-rules (Autofixable).
-- at-rule-semicolon-space-before: Require a single space or disallow whitespace before the semicolons of at-rules.
+- at-rule-empty-line-before: 规则前要求或禁止空行 (可自动修复).
+- at-rule-name-case: 指定规则名称的小写或大写 (可自动修复).
+- at-rule-name-newline-after: 在规则名称后需要换行符
+- at-rule-name-space-after: 规则名称后需要一个空格 (可自动修复).
+- at-rule-semicolon-newline-after: 在规则的分号后需要换行符 (可自动修复).
+- at-rule-semicolon-space-before: 在规则的分号之前需要一个空格或不允许使用空格。
 
 #### Comment
-- comment-empty-line-before: Require or disallow an empty line before comments (Autofixable).
-- comment-whitespace-inside: Require or disallow whitespace on the inside of comment markers (Autofixable).
+- comment-empty-line-before: 在注释标记前要求或禁止空白行 (可自动修复).
+- comment-whitespace-inside:在注释标记的内部要求或禁止空格 (可自动修复).
 
 #### General / Sheet
-- indentation: Specify indentation (Autofixable).
-- linebreaks: Specify unix or windows linebreaks (Autofixable).
-- max-empty-lines: Limit the number of adjacent empty lines (Autofixable).
-- max-line-length: Limit the length of a line.
-- no-eol-whitespace: Disallow end-of-line whitespace (Autofixable).
-- no-missing-end-of-source-newline: Disallow missing end-of-source newlines (Autofixable).
-- no-empty-first-line: Disallow empty first lines (Autofixable).
-- unicode-bom: Require or disallow Unicode BOM.
+- indentation: 指定缩进 (可自动修复).
+- linebreaks: 指定Unix或Windows换行符 (可自动修复).
+- max-empty-lines: 限制相邻的空行数 (可自动修复).
+- max-line-length: 限制一行的长度。
+- no-eol-whitespace: 禁止行尾空格 (可自动修复).
+- no-missing-end-of-source-newline: 禁止缺少源结尾换行符 (可自动修复).
+- no-empty-first-line: 禁止空的第一行 (可自动修复).
+- unicode-bom: 要求或禁止使用Unicode BOM。
+
+## 用法
+
+### 命令行界面 (CLI)
+
+您可以在命令行上使用stylelint。例如：
+
+```js
+npx stylelint "**/*.css"
+```
+
+使用npx stylelint --help打印CLI文档。
+
+#### Options
+
+除了标准选项之外，CLI还接受：
+
+**--allow-empty-input, --aei**
+当全局模式不匹配任何文件时，该过程将退出而不会引发错误。
+
+**--color, --no-color**
+强制启用/禁用颜色。
+
+**--ignore-pattern, --ip**
+要忽略的文件模式（除了.stylelintignore中的文件）。
+
+**--output-file, -o**
+写入报告的文件路径。除了标准输出外，stylelint还将报告输出到指定的文件名。
+
+**--print-config**
+打印给定路径的配置。 stylelint输出用于传递的文件的配置。
+
+**--quiet, -q**
+仅针对具有“错误”级别严重性的规则注册冲突（忽略“警告”级别）。
+
+**--stdin**
+接受标准输入，即使它为空。
+
+**--version, -v**
+显示当前安装的stylelint版本。
+
+#### 用法示例
+
+CLI希望输入是文件glob或process.stdin。它将格式化的结果输出到process.stdout中。 确保在文件全局名称周围加上引号
+
+#### 示例A-递归
+
+以递归方式删除foo目录中的所有.css文件：
+
+```js
+stylelint "foo/**/*.css"
+```
+
+#### 示例B-多个文件扩展名
+
+整理所有.css，.scss和.sass文件
+
+```js
+stylelint "**/*.{css,scss,sass}"
+```
+
+#### 例子C-stdin
+
+Linting stdin:
+
+```js
+echo "a { color: pink; }" | stylelint
+```
+
+####  示例D - negation
+
+使用输入glob中的否定，除docker子文件夹中的文件以外的所有.css文件：
+
+```js
+stylelint "**/*.css" "!**/docker/**"
+```
+#### 示例E - caching
+
+将已处理的.scss文件缓存在foo目录中：
+
+```js
+stylelint "foo/**/*.scss" --cache --cache-location "/Users/user/.stylelintcache/"
+```
+#### 示例F - writing a report
+
+清除foo目录中的所有.css文件，然后将输出写入myTestReport.txt：
+
+```js
+stylelint "foo/*.css" --output-file myTestReport.txt
+```
+#### 示例G - specifying a config
+
+使用bar / mySpecialConfig.json作为配置，可以覆盖foo目录及其任何子目录中的所有.css文件：
+
+```js
+stylelint "foo/**/*.css" --config bar/mySpecialConfig.json
+```
+#### 示例H - using a custom syntax
+
+使用自定义语法递归覆盖foo目录中的所有.css文件：
+
+```js
+stylelint "foo/**/*.css" --customSyntax path/to/my-custom-syntax.js
+```
+
+#### 示例I - print on success
+
+确保成功运行时输出：
+
+```js
+stylelint -f verbose "foo/**/*.css"
+```
+
+## 忽略代码
+
+您可以忽略：
+
+- 在文件内
+- 完全归档
+
+### 在文件内
+
+您可以在CSS中使用特殊注释暂时关闭规则。例如，您可以关闭所有规则：
+
+```css
+/* stylelint-disable */
+a {}
+/* stylelint-enable */
+```
+
+或者，您可以关闭单个规则
+
+```css
+/* stylelint-disable selector-no-id, declaration-no-important */
+#id {
+  color: pink !important;
+}
+/* stylelint-enable selector-no-id, declaration-no-important */
+```
+
+您可以使用/ * stylelint-disable-line * /注释关闭各个行的规则，此后无需显式重新启用它们：
+
+```css
+#id { /* stylelint-disable-line */
+  color: pink !important; /* stylelint-disable-line declaration-no-important */
+}
+```
+您还可以仅使用/ * stylelint-disable-next-line * /注释关闭下一行的规则，此后无需显式重新启用它们：
+
+```css
+#id {
+  /* stylelint-disable-next-line declaration-no-important */
+  color: pink !important;
+}
+```
+
+stylelint支持复杂的重叠禁用和启用模式
+
+```css
+/* stylelint-disable */
+/* stylelint-enable foo */
+/* stylelint-disable foo */
+/* stylelint-enable */
+/* stylelint-disable foo, bar */
+/* stylelint-disable baz */
+/* stylelint-enable baz, bar */
+/* stylelint-enable foo */
+```
+
+注意：选择器和值列表中的注释当前被忽略
+
+您还可以在注释的末尾加上两个连字符，并在后面加上说明
+
+```css
+/* stylelint-disable -- Reason for disabling stylelint. */
+/* stylelint-disable foo -- Reason for disabling the foo rule. */
+/* stylelint-disable foo, bar -- Reason for disabling the foo and bar rules. */
+```
+
+重要：连字符的两侧必须有一个空格。
+
+
+### 完全归档
+
+您可以使用.stylelintignore文件忽略特定文件。例如：
+
+```js
+**/*.js
+vendor/**/*.css
+```
+
+.stylelintignore文件中的模式必须与.gitignore语法匹配。 （在后台，node-ignore解析您的模式。）始终相对于process.cwd（）分析.stylelintignore中的模式。
+
+stylelint在process.cwd（）中查找.stylelintignore文件。您还可以使用--ignore-path（在CLI中）和ignorePath（在JS中）选项指定忽略模式文件的路径（绝对路径或相对于process.cwd（）的路径）。
+
+另外，您可以在配置对象中添加ignoreFiles属性。
+
+
+[详见：请参考stylelint官方文档](https://stylelint.io/)
