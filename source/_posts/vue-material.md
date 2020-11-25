@@ -20,6 +20,14 @@ categories: 网站
 
 [Vue Router 是 Vue.js 官方的路由管理器](https://router.vuejs.org/zh/)
 
+# Vue3.0 全家桶
+
+[Nuxt-CompositionApi](https://composition-api.nuxtjs.org/)
+[vuex-module-decorators](https://championswimmer.in/vuex-module-decorators/)
+[vite](https://github.com/vitejs/vite)
+[Vue Router](https://next.router.vuejs.org/introduction.html)
+[vue-composition-api](https://vue3js.cn/vue-composition-api/)
+
 ## vue ui
 
 [Ant Design Vue是 Ant Design 3.X 的 Vue 实现，开发和服务于企业级后台产品](https://www.antdv.com/docs/vue/introduce-cn/)
@@ -69,6 +77,8 @@ categories: 网站
 [瀑布流组件-1](https://github.com/lfyfly/vue-waterfall-easy)
 
 [Vue.js 2.x 组件级懒加载方案](https://github.com/xunleif2e/vue-lazy-component)
+
+[eslint-plugin-vue](https://eslint.vuejs.org/rules/no-v-html.html)
 
 ## vue 深入学习
 
