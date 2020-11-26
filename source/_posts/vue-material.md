@@ -27,6 +27,9 @@ categories: 网站
 [vite](https://github.com/vitejs/vite)
 [Vue Router](https://next.router.vuejs.org/introduction.html)
 [vue-composition-api](https://vue3js.cn/vue-composition-api/)
+[nuxt-typescript](https://typescript.nuxtjs.org/)
+[vuex-module-decorators typescript / ES7装饰器使Vuex模块变得轻而易举](https://championswimmer.in/vuex-module-decorators/)
+
 
 ## vue ui
 
