@@ -60,7 +60,6 @@ NPX
 npx @ls-lint/ls-lint
 ```
 
-
 Docker [Image](https://hub.docker.com/r/lslintorg/ls-lint)
 
 ```bush
@@ -93,13 +92,14 @@ docker run -t -v /path/to/project:/data lslintorg/ls-lint:v1.9.0
       ...
 ```
 
-> `ls` 使用扩展，子扩展和目录的所有规则定义项目目录的结构 `ignore `可以完全忽略其中的某些文件和目录
+> `ls` 使用扩展，子扩展和目录的所有规则定义项目目录的结构 `ignore`可以完全忽略其中的某些文件和目录
 
 #### 扩展和子扩展
 
 项目的全局配置是可选的，但可能是最佳解决方案.假设您要定义所有.js，.ts和.d.ts项目文件都必须在`kebab-case`样式，但您想忽略.git和node_modules目录-可以这样解决
 
 `.ls-lint.yml`
+
 ```yml
 ls:
     .js: kebab-case
@@ -117,8 +117,8 @@ ignore:
 
 您还可以通过.dir定义来定义目录规则
 
-
 `.ls-lint.yml`
+
 ```yml
 ls:
     packages/src:
@@ -131,6 +131,7 @@ ls:
 通常，不同目录有不同的规则，或者您只想为某些特定目录定义规则
 
 `.ls-lint.yml`
+
 ```yml
 ls:
     .js: kebab-case
@@ -151,6 +152,7 @@ ls:
 全局模式*或**可用于所有ls目录配置
 
 `.ls-lint.yml`
+
 ```yaml
 ls:
     packages/*/src: # matches any sequence of non-path-separators
@@ -163,6 +165,7 @@ ls:
 - 局部匹配
 局部模式可用于所有ls目录配置：
 `.ls-lint.yml`
+
 ```yml
 ls:
     packages/*/{src,tests}: # matches a sequence of characters if one of the comma-separated alternatives matches
@@ -184,7 +187,7 @@ ls-lint提供了多个开箱即用的规则
 | lowercase | - |  每个字母必须小写 忽略非字母|
 | camelcase | camelCase | 字符串必须为camelCase 只允许使用字母和数字|
 | pascalcase | PascalCase| 字符串必须为Pascalcase 只允许使用字母和数字|
-| snakecase | 	snake_case| 字符串必须为snake_case 只允许使用小写字母，数字和_|
+| snakecase | snake_case| 字符串必须为snake_case 只允许使用小写字母，数字和_|
 | kebabcase | kebab-case | 字符串必须为kebab-case 仅小写字母，数字和-允许|
 | pointcase | point.case| 字符串必须为“小写” 仅小写字母，数字和.允许的|
 
@@ -195,6 +198,7 @@ regex规则为您的配置提供了充分的灵活性，并通过^ {pattern} $�
 ##### 示例
 
 `.ls-lint.yml`
+
 ```yml
 ls:
     .js: regex:[a-z0-9]+ # the final regex pattern will be ^[a-z0-9]+$
@@ -205,9 +209,8 @@ ls:
 `|` 支持多个正则表达式规则
 
 `.ls-lint.yml`
+
 ```yml
 ls:
     .js: regex:Schema(\.test)? | regex:Resolver(\.test)?
 ```
-
-
