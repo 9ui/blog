@@ -1,5 +1,5 @@
 # deploy.yml
-name: deploy blog to aliyun
+name: deploy
 on:
   push:
     branches:
