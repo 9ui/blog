@@ -1,5 +1,5 @@
 ---
-title: GitHub Action
+title: GitHub Action File
 date: 2021-02-23 09:28:46
 tags:
   - github
@@ -183,36 +183,36 @@ jobs:
 11. 部署成功通知(企业微信/钉钉/邮箱 等)
 
 ### 检出代码
-
-待完善
+  
+[查看详情](https://github.com/actions/checkout)
 
 ### 设置git环境
 
-待完善
+[查看详情](https://github.com/srt32/git-actions)
 
 ### 设置node环境
 
-待完善
+[查看详情](https://github.com/actions/setup-node)
 
 ### 设置(yarn/npm)缓存
 
-待完善
+[查看详情](https://github.com/actions/cache)
 
 ### 缓存文件
 
-待完善
+[查看详情](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
 
 ### 下载依赖
 
-待完善
+yarn install / npm instll
 
 ### 构建打包
 
-待完善
+yarn build/npm run build
 
 ### 生成压缩包
 
-待完善
+运行脚本  - run: tar -zcvf release.tgz ...
 
 ### 上传文件到服务器
 
@@ -227,7 +227,7 @@ jobs:
     TARGET: ${{ secrets.TARGET }}
 ```
 
-- `SSH_PRIVATE_KEY`: 免密登陆服务器的秘钥
+- `SSH_PRIVATE_KEY`: 免密登陆服务器的秘钥 (.ssh/id_rsa)
 - `ARGS`: 部署之前删除原有文件
 - `SOURCE`：需要上传的打包文件
 - `REMOTE_HOST`：服务器的主机ip地址（例如：236.23.56.36）
@@ -268,4 +268,4 @@ jobs:
 
 ### 部署成功通知(企业微信/钉钉/邮箱 等)
 
-待完善
+[查看详情](https://github.com/chf007/action-wechat-work)
