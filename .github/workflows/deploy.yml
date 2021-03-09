@@ -45,3 +45,29 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
+      # Notify
+      - name: Success
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        with:
+          severity: info
+          avatarUrl: https://avatars.githubusercontent.com/u/71952965?s=400&u=b4330492595a29cdba1c8c3029c078d1cb70631e&v=4
+          username: ${{ github.event.head_commit.committer.name }}
+          description: 修改内容如下
+          details: ${{ github.event.head_commit.message }}
+          footer: 更新时间
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Failure
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+          severity: error
+          details: 更新失败
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Cancelled
+        uses: rjstone/discord-webhook-notify@v1
+        if: cancelled()
+        with:
+          severity: warn
+          details: 平台取消更新
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
