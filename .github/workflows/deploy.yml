@@ -69,5 +69,5 @@ jobs:
         if: cancelled()
         with:
           severity: warn
-          details: 平台取消更新
+          details: 取消更新
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}

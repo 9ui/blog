@@ -14,6 +14,8 @@ tags:
 
 [tailwindcss第三方组件](https://web2tailwind.com/component/introduction)
 
+[tailwindcss模板](https://blocks.wickedtemplates.com/)
+
 ## Github开源项目
 
 [A Tailwind CSS starter template for Vite](https://github.com/posva/vite-tailwind-starter)
