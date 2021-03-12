@@ -45,7 +45,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
         # 下载依赖
-      - run: yarn
+      - name: Yarn
+        run: |
+          yarn global add hexo-cli
+          yarn
+        env:
+          CI: true
         if: |
           steps.cache-yarn-cache.outputs.cache-hit != 'true' ||
           steps.cache-node-modules.outputs.cache-hit != 'true'
