@@ -1,10 +1,10 @@
 module.exports = {
   types: [
-    { value: '✨ 新增', name: '新增:     新增文章' },
-    { value: '📝 编辑', name: '编辑:     编辑文章' },
-    { value: '📝 日志', name: '日志:     更新日志' },
-    { value: '🔥 删除', name: '删除:      删除文章' },
-    { value: '🔧配置', name: '配置:    更改配置文件' },
+    { value: '✨ add', name: '新增:     新增文章' },
+    { value: '📝 edit', name: '编辑:     编辑文章' },
+    { value: '📝 log', name: '日志:     更新日志' },
+    { value: '🔥 delete', name: '删除:      删除文章' },
+    { value: '🔧config', name: '配置:    更改配置文件' },
   ],
   scopes: [],
   messages: {
