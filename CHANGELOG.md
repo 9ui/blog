@@ -1,7 +1,7 @@
 # Changelog
 
-<a name="0.0.0"></a>
-## 0.0.0 (2021-02-24)
+<a name="0.0.1"></a>
+## 0.0.1 (2021-06-01)
 
 ### Added
 
@@ -15,6 +15,12 @@
 
 ### Changed
 
+- 🔧 配置: add vscode配置文件 [[f66a7de](https://github.com/9ui/9ui.github.io/commit/f66a7def2234698e7af350078a26be818b6fa07d)]
+- 🔧 config: 修改配置文件 [[8ed0561](https://github.com/9ui/9ui.github.io/commit/8ed0561d1ea0432e5976b8953e50d05f9b0e2827)]
+- 🔧 config: 调整配置文件 [[c80f829](https://github.com/9ui/9ui.github.io/commit/c80f8295fca78c34d60335d1fba233b3463cffc1)]
+- 🔧 config: 配置调整 [[027b164](https://github.com/9ui/9ui.github.io/commit/027b164b8b9e468452d19a139c20b76be8735d14)]
+- 🔧 config: 配置调整 [[fe610f3](https://github.com/9ui/9ui.github.io/commit/fe610f3497d4e6060c0b80e6f2173f7e09b79215)]
+- 🔧 config: 修改配置文件 [[4e42798](https://github.com/9ui/9ui.github.io/commit/4e427988c71292934b409b2ea5d67a3faad9313a)]
 - 🔧 配置: 修改配置文件 [[eaeb36c](https://github.com/9ui/9ui.github.io/commit/eaeb36c8639131849dc63fe25b001996d108c21b)]
 - 🔧 配置: 新增github工作流 [[f649c39](https://github.com/9ui/9ui.github.io/commit/f649c39cbf5ad5abf066ac174cf26d1d970b058c)]
 - 🔧 配置(config): 修改配置 [[350c9ab](https://github.com/9ui/9ui.github.io/commit/350c9ab1f816881b19d3daaa834b74fea365d90b)]
@@ -22,8 +28,20 @@
 - 🔧 chore(配置): 修改配置文件 [[db29a2e](https://github.com/9ui/9ui.github.io/commit/db29a2eda3cb921146c74ce9c896f3275dcbfede)]
 - 🔧 chore(配置): 新增commitlint配置文件 [[9f05613](https://github.com/9ui/9ui.github.io/commit/9f056135223a160c85a1872761bfeea1e8f40a43)]
 
+### Removed
+
+- 🔥 delete: 删除文章 [[0dcce29](https://github.com/9ui/9ui.github.io/commit/0dcce298462c417a886b3fd1cb531d95b2de1082)]
+
 ### Miscellaneous
 
+-  v0.0.1 [[9132b5a](https://github.com/9ui/9ui.github.io/commit/9132b5aefc941b48bd59914e4ca17896e6d410de)]
+-  Merge branch &#x27;master&#x27; of github.com:9ui/9ui.github.io into develop [[c7318d9](https://github.com/9ui/9ui.github.io/commit/c7318d9c424dda0e9433282b832baf666b8d540a)]
+-  fix(ci): 修改ci/cd文件 [[0294c56](https://github.com/9ui/9ui.github.io/commit/0294c56a5c6c8de23b28d75ec188251515338260)]
+-  ci(ci/cd): ci/cd [[3f32612](https://github.com/9ui/9ui.github.io/commit/3f326127be5ac3a34ee858de066d05cefdfc8c34)]
+-  fix(ci): 修改ci/cd文件 [[0ad53fa](https://github.com/9ui/9ui.github.io/commit/0ad53fae4f52feb4e6b5fe4949d8b8e3f92a176b)]
+- 📝 编辑: [[adaae4f](https://github.com/9ui/9ui.github.io/commit/adaae4f848ec2bee56d843a76d6866da5b9c84ef)]
+-  feat: add post [[996c9f3](https://github.com/9ui/9ui.github.io/commit/996c9f3e5ead1316540bbbaa64e569a3a354610a)]
+- 📝 日志: update log [[c550713](https://github.com/9ui/9ui.github.io/commit/c550713c87cc15d98d06199eee18d8f92f73aae0)]
 -  Merge branch &#x27;master&#x27; of github.com:9ui/9ui.github.io [[b814fcc](https://github.com/9ui/9ui.github.io/commit/b814fcc928f756a95d435fa66fe1376b45004d45)]
 - 📝 编辑: 完善文章 [[38de551](https://github.com/9ui/9ui.github.io/commit/38de5515041826ab5e555e91a4dcef659390e415)]
 - 📝 编辑: 编辑文章 [[33869dd](https://github.com/9ui/9ui.github.io/commit/33869dd0f1efcbcb768231690acb83e8a8bd9109)]
