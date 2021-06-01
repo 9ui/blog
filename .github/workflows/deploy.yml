@@ -20,11 +20,43 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
-      # npm install
-      - name: npm install
+
+
+      # 设置缓存路径
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      # yarn缓存
+      - name: Cache yarn cache
+        uses: actions/cache@v2
+        id: cache-yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      # 缓存依赖文件
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
+
+        # 下载依赖
+      - run: yarn
+        if: |
+          steps.cache-yarn-cache.outputs.cache-hit != 'true' ||
+          steps.cache-node-modules.outputs.cache-hit != 'true'
+      # Yarn
+      - name: Yarn
         run: |
-          npm install -g hexo-cli
-          npm install
+          yarn global add hexo-cli
+          yarn
         env:
           CI: true
       # build
@@ -61,7 +93,7 @@ jobs:
           # 命令超时配置 默认10m
           command_timeout: 20m
           script: |
-            cd /www/wwwroot//www/wwwroot/www.zuozhiwen.com
+            cd /www/wwwroot/www.zuozhiwen.com
             tar zxvf public.tgz
 
       # Notify
