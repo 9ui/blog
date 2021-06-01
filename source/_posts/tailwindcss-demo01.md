@@ -3,7 +3,7 @@ title: tailwindcss-example
 date: 2021-02-24 09:41:45
 tags:
   - css
-  - tailwind
+  - tailwindcss
 ---
 
 ## 组件
