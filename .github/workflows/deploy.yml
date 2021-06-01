@@ -48,7 +48,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
-
       # 部署
       - name: Deploy
         uses: appleboy/ssh-action@master
