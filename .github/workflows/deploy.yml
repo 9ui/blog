@@ -1,5 +1,5 @@
 # deploy.yml
-name: deploy blog to aliyun
+name: deploy
 on:
   push:
     branches:
@@ -15,11 +15,11 @@ jobs:
       - uses: srt32/git-actions@v0.0.3
         with:
           args: git submodule update --init --recursive
-      # 使用 node:10
-      - name: use Node.js 10
+      # 使用 node:14
+      - name: use Node.js 14
         uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 14
       # npm install
       - name: npm install
         run: |
@@ -35,13 +35,59 @@ jobs:
         env:
           CI: true
 
+      # 生成压缩包
+      - run: tar -zcvf public.tgz public
+
       # Deploy
       - name: Deploy
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
           ARGS: "-avz --delete"
-          SOURCE: "public/"
+          SOURCE: "public.tgz"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
+      # 部署
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.ACCESS_TOKEN }}
+          # 远程服务器端口号
+          port: ${{ secrets.PORT }}
+          # 命令超时配置 默认10m
+          command_timeout: 20m
+          script: |
+            cd /www/wwwroot/www.zuozhiwen.com
+            tar zxvf public.tgz
+
+      # Notify
+      - name: Success
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        with:
+          severity: info
+          avatarUrl: https://avatars.githubusercontent.com/u/71952965?s=400&u=b4330492595a29cdba1c8c3029c078d1cb70631e&v=4
+          username: ${{ github.event.head_commit.committer.name }}
+          description: 修改内容如下
+          details: ${{ github.event.head_commit.message }}
+          footer: 更新时间
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      # Failure
+      - name: Failure
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+          severity: error
+          details: 更新失败
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      # Cancelled
+      - name: Cancelled
+        uses: rjstone/discord-webhook-notify@v1
+        if: cancelled()
+        with:
+          severity: warn
+          details: 取消更新
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
