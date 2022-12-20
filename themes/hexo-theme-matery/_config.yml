@@ -507,7 +507,7 @@ banner:
 icp:
   enable: true
   url: https://beian.miit.gov.cn/ # 备案链接
-  text: 粤ICP备19062309号  # 备案信息
+  text: 粤ICP备2022148083号  # 备案信息
 
 # CDN访问加速
 # 第一次使用本功能，一定要先配置url，再`hexo cl && hexo g && hexo d`部署到GitHub的仓库，注意！必须是GitHub的仓库！
